@@ -12,7 +12,7 @@
     "deploy": "gh-pages -d dist",
     "start": "webpack-dev-server",
     "docs": "NODE_ENV=production webpack -p",
-    "build": "babel src -d dist --copy-files",
+    "build": "babel src -d dist --copy-files && webpack serve",
     "clean": "rm -rf dist",
     "dist": "yarn run clean && yarn run build"
   },

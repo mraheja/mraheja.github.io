@@ -32,22 +32,51 @@ class App extends Component {
               Mehul Raheja
             </Text>
           </Div>
-          <Div
+          {/* <Div
             w="100vw"
             textAlign="center"
-            p={{y: "1rem" }}
+            p={{y: "0rem" }}
             flexDir="row"
             justify="center"
             d="flex"
           >
-            <p>Overview</p>
+            <a href="OVERVIEW_LINK">
+            <Button
+              hoverBg="warning800"
+              rounded="circle"
+              p={{ r: "1.5rem", l: "1.5rem" }}
+              shadow="3"
+              hoverShadow="4">Overview</Button>
+            </a>
+
             <Div w="3vw"></Div>
-            <p>Projects</p>
+            <a href="PROJECTS_LINK">
+            <Button
+              hoverBg="warning800"
+              rounded="circle"
+              p={{ r: "1.5rem", l: "1.5rem" }}
+              shadow="3"
+              hoverShadow="4">Projects</Button>
+            </a>
             <Div w="3vw"></Div>
-            <p>Writing</p>
+            <a href="WRITING_LINK">
+            <Button
+              hoverBg="warning800"
+              rounded="circle"
+              p={{ r: "1.5rem", l: "1.5rem" }}
+              shadow="3"
+              hoverShadow="4">Writing</Button>
+            </a>
             <Div w="3vw"></Div>
-            <p>Resume</p>
-          </Div>
+            <a href="RESUME_LINK">
+            <Button
+              hoverBg="warning800"
+              rounded="circle"
+              p={{ r: "1.5rem", l: "1.5rem" }}
+              shadow="3"
+              hoverShadow="4">Resume</Button>
+            </a>
+          </Div> */}
           <Div
             textColor="black900"
             minH="70vh"
@@ -65,7 +94,7 @@ class App extends Component {
               <Text>
                 
 
-                Hi, I’m Mehul! I’m currently a junior at UC Berkeley studying Electrical Engineering & Computer Science and minoring in Physics and Math. My interests lie broadly within machine learning, quantum computing, and distributed systems as I continue exploring various career paths. I'm currently searching for academic and industry research opportunities to delve deeper into these fields. I'm also always looking for small, fun <a href="TODO"> meme projects</a> to do so please reach out if you have any ideas! Some past work includes: <br/>
+                Hi, I’m Mehul! I’m currently a junior at UC Berkeley studying Electrical Engineering & Computer Science and minoring in Physics and Math. My interests lie broadly within machine learning, quantum computing, and distributed systems as I continue exploring various career paths. I'm currently searching for academic and industry research opportunities to delve deeper into these fields. I'm also always looking for small, fun <a href="https://devpost.com/software/despasirito"> meme projects</a> to do so please reach out if you have any ideas! Some past work includes: <br/>
                 
                 <br/><br/>
                 * <a href="https://github.com/mraheja/inflection">Inflection</a><br/>
