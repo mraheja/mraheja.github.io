@@ -1,4 +1,5 @@
 {
+  "homepage": "http://mraheja.github.io",
   "name": "atomize",
   "version": "1.0.21",
   "main": "index.js",
@@ -7,6 +8,8 @@
     "dist"
   ],
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "webpack-dev-server",
     "docs": "NODE_ENV=production webpack -p",
     "build": "babel src -d dist",
@@ -19,6 +22,7 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
+    "gh-pages": "^3.2.3",
     "prism-react-renderer": "^0.1.6",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
