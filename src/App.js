@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Tooltip } from "react-tooltip";
 import mePicture from "./me.jpeg";
 import "./App.css";
-import { IoLogoGithub, IoLogoLinkedin } from "react-icons/io";
+import { IoLogoGithub, IoLogoInstagram, IoLogoLinkedin } from "react-icons/io";
 
 function Link({ url, text }) {
   return (
@@ -31,6 +32,25 @@ function HoverTip({ text, hoverElem: hoverText }) {
   );
 }
 
+function WoodenGifts() {
+  const [hover, setHover] = useState(false);
+  const onHover = () => {
+    setHover(!hover);
+  };
+
+  return (
+    <span>
+        <nobr
+          className="bg-blue-200 hover:bg-blue-300 cursor-default"
+          onMouseOver={onHover}
+          onMouseOut={onHover}
+        >
+          wooden gifts
+        </nobr>
+    </span>
+  );
+}
+
 function ProjectList({ projects }) {
   return (
     <ul className="list-disc ml-10 mt-2">
@@ -53,6 +73,9 @@ function Socials() {
       <a href="https://www.linkedin.com/in/mehulraheja">
         <IoLogoLinkedin className={iconClass} />
       </a>
+      <a href="https://www.instagram.com/mraheja99/">
+        <IoLogoInstagram className={iconClass} />
+      </a>
     </div>
   );
 }
@@ -62,9 +85,9 @@ function Footer() {
     <>
       <Socials />
       <p className="font-light text-xs text-center mt-1">
-        created by: me
+        created by: me using codeium
         <br />
-        last updated: 10/18/2023
+        last updated: 10/27/2023
       </p>
       <br />
     </>
@@ -72,21 +95,71 @@ function Footer() {
 }
 
 function Header() {
+  const fullImageHeight = 100;
+  const topMargin = 80;
+  const smallImageHeight = 40;
+
+  const scrollRange = (fullImageHeight - smallImageHeight) * 2;
+
+  const [imageHeight, setImageHeight] = useState(fullImageHeight);
+
+  const handleScroll = () => {
+    if (window.scrollY > topMargin + scrollRange) {
+      setImageHeight(smallImageHeight);
+    } else if (window.scrollY > topMargin) {
+      setImageHeight(
+        smallImageHeight +
+          (fullImageHeight - smallImageHeight) *
+            (1 - (window.scrollY - topMargin) / scrollRange)
+      );
+    } else {
+      setImageHeight(fullImageHeight);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const smallImageDisplayed = imageHeight === smallImageHeight;
+
   return (
-    <>
-      <div className="flex justify-center">
-        <img src={mePicture} alt="me" className="rounded-full" width="100" />
+    <div className="flex flex-col justify-center absolute w-[100%] bg-white">
+      <div
+        id="fullDiv"
+        className="flex top-0 bg-opacity-20 justify-center items-center p-4"
+        style={{
+          flexDirection: smallImageDisplayed ? "row" : "column",
+        }}
+      >
+        <div className="flex justify-center px-7">
+          <img
+            id="profile-image"
+            src={mePicture}
+            alt="me"
+            className="rounded-full max-h-[100px] m-3"
+            style={{ height: imageHeight }}
+          />
+        </div>
+        <div>
+          <div className="flex justify-center">
+            <h1 className="text-2xl font-bold"> mehul raheja</h1>
+          </div>
+          <div className="flex justify-center">
+            <h1 className="text-l mt-1 font-light">
+              {" "}
+              rahejamehul [at] gmail [dot] com
+            </h1>
+          </div>
+        </div>
       </div>
-      <div className="flex justify-center">
-        <h1 className="text-2xl mt-3 font-bold"> mehul raheja</h1>
-      </div>
-      <div className="flex justify-center">
-        <h1 className="text-l mb-10 mt-1 font-light">
-          {" "}
-          rahejamehul [at] gmail [dot] com
-        </h1>
-      </div>
-    </>
+      {smallImageDisplayed && (
+        <div className="w-[100%] h-[1px] bg-slate-800 self-center"></div>
+      )}
+    </div>
   );
 }
 
@@ -138,87 +211,102 @@ function App() {
   ];
 
   return (
-    <div className="flex justify-center mt-20">
-      <div className="text-lg mx-10 w-[700px]">
-        <div>
-          <Header />
+    <div>
+      <div className="flex justify-center mt-20 sticky top-0 bg-white w-[100%]">
+        <Header />
+      </div>
+
+      <br />
+
+      <div className="flex justify-center mt-[230px]">
+        <div className="text-lg mx-10 w-[700px]">
+          <p>
+            hi! i'm mehul and i'm pretty{" "}
+            <HoverTip
+              text="excited"
+              hoverElem="← like geniunely i'm always kinda excited :')"
+            />
+          </p>
+          <br />
+          <p>
+            currently, i'm tucked away in the suburbs of Mountain View, building
+            a coding <em className="text-green-500 font-bold">superpower</em> @{" "}
+            <Link url="https://codeium.com" text="Codeium" /> and very
+            inconsistently emailing people about random life updates and/or
+            interesting science rabbit holes on{" "}
+            <Link
+              url="https://forms.gle/6ynpoLgRh9LZnGqT7"
+              text="my newsletter"
+            />
+            .
+          </p>
+          <br />
+          <div>
+            sometimes i work on cool projects like:
+            <ProjectList projects={cool_projects} />
+          </div>
+          <br />
+          <div>
+            but i also just meme around and do things like:
+            <ProjectList projects={fun_projects} />
+          </div>
+          <br />
+          <p>
+            i get a lot of joy from spreading excitement about computer science:
+            one of the most meaningful things i've done was lead the machine
+            learning education of{" "}
+            <Link url="https://launchpad.berkeley.edu/" text="Launchpad" /> for
+            a year. i was also one of the first ciriculum developers for
+            competitive programming at{" "}
+            <Link url="https://junilearning.com/" text="Juni Learning" /> & i've
+            taught multiple camps at{" "}
+            <Link url="https://alphastar.academy/" text="AlphaStar Academy" />.
+          </p>
+          <br />
+          <p>
+            in the past, i've done CI orchestration and low-latency optimization
+            for{" "}
+            <Link
+              text="Citadel Securities"
+              url="https://www.citadelsecurities.com/"
+            />{" "}
+            , built full-stack cluster management tools for{" "}
+            <Link text="Databricks" url="https://databricks.com/" />
+            , and developed the front-end for cloud visualization software at
+            <Link text="LucidScale" url="https://lucidscale.com/" />.
+          </p>
+          <br />
+          <p>
+            i've also volunteered at the
+            <Link
+              text="Sky Computing Lab"
+              url="https://sky.cs.berkeley.edu/"
+            />{" "}
+            where i worked on ML infra,
+            <Link text="Mesbah Lab" url="https://mesbahlab.com" /> where i
+            developed MPC control for plasma systems, and
+            <Link text="RAEL" url="https://rael.berkeley.edu/" /> where i
+            created energy consumption simulations for electric buses.
+          </p>
+
+          <br />
+
+          <p>
+            sometimes, i try my best to make some <WoodenGifts /> for my
+            friends.
+          </p>
+
+          <br />
+
+          <p>
+            please feel free to reach out! if you're in the area, i'm moderately
+            allergic to coffee, but we could grab some matcha or go a walk
+            together {":')"}
+          </p>
+
+          <br />
+          <Footer />
         </div>
-
-        <p>
-          hi! i'm mehul and i'm pretty{" "}
-          <HoverTip
-            text="excited"
-            hoverElem="← like geniunely i'm always kinda excited :')"
-          />
-        </p>
-        <br />
-        <p>
-          currently, i'm tucked away in the suburbs of Mountain View, building a
-          coding <em className="text-green-500 font-bold">superpower</em> @{" "}
-          <Link url="https://codeium.com" text="Codeium" /> and occasionally
-          emailing people about random life updates and/or interesting science
-          rabbit holes on{" "}
-          <Link
-            url="https://forms.gle/6ynpoLgRh9LZnGqT7"
-            text="my newsletter"
-          />
-          .
-        </p>
-        <br />
-        <div>
-          sometimes i work on cool projects like:
-          <ProjectList projects={cool_projects} />
-        </div>
-        <br />
-        <div>
-          but i also just meme around and do things like:
-          <ProjectList projects={fun_projects} />
-        </div>
-        <br />
-        <p>
-          i get a lot of joy from spreading excitement about computer science:
-          one of the most meaningful things i've done was lead the machine
-          learning education of{" "}
-          <Link url="https://launchpad.berkeley.edu/" text="Launchpad" /> for a
-          year. i was also one of the first ciriculum developers for competitive
-          programming at{" "}
-          <Link url="https://junilearning.com/" text="Juni Learning" /> & i've
-          taught multiple camps at{" "}
-          <Link url="https://alphastar.academy/" text="AlphaStar Academy" />.
-        </p>
-        <br />
-        <p>
-          in the past, i've done CI orchestration and low-latency optimization
-          for{" "}
-          <Link
-            text="Citadel Securities"
-            url="https://www.citadelsecurities.com/"
-          />{" "}
-          , built full-stack cluster management tools for{" "}
-          <Link text="Databricks" url="https://databricks.com/" />
-          , and developed the front-end for cloud visualization software at
-          <Link text="LucidScale" url="https://lucidscale.com/" />.
-        </p>
-        <br />
-        <p>
-          i've also volunteered at the
-          <Link text="Sky Computing Lab" /> where I worked on ML infra,
-          <Link text="Mesbah Lab" link="mesbahlab.com" /> where I developed MPC
-          control for plasma systems, and
-          <Link text="RAEL" link="https://rael.berkeley.edu/" /> where I created
-          energy consumption simulations for electric buses.
-        </p>
-
-        <br />
-
-        <p>
-          especially if you're in mountain view, please feel free to reach out!
-          i'm moderately allergic to coffee, but we could grab some matcha or go
-          a walk together {":')"}
-        </p>
-
-        <br />
-        <Footer />
       </div>
     </div>
   );
