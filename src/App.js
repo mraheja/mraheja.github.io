@@ -327,7 +327,7 @@ function App() {
               <Link
                 text="Citadel Securities"
                 url="https://www.citadelsecurities.com/"
-              />{" "}
+              />
               , built full-stack cluster management tools for{" "}
               <Link text="Databricks" url="https://databricks.com/" />
               , and developed the front-end for cloud visualization software at
