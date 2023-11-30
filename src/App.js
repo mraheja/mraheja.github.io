@@ -263,105 +263,112 @@ function App() {
   ];
 
   return (
-    <div>
-      <div className="flex justify-center mt-20 sticky top-0 bg-white w-[100%]">
-        <Header />
-      </div>
+    <html>
+      <head>
+        <title>Your Website Name</title>
+      </head>
+      <div>
+        <div className="flex justify-center mt-20 sticky top-0 bg-white w-[100%]">
+          <Header />
+        </div>
 
-      <br />
+        <br />
 
-      <div className="flex justify-center mt-[230px]">
-        <div className="text-lg mx-10 w-[700px]">
-          <p>
-            hi! i'm mehul and i'm pretty{" "}
-            <HoverTip
-              text="excited"
-              hoverElem="← like geniunely i'm always kinda excited :')"
-            />
-          </p>
-          <br />
-          <p>
-            currently, i'm tucked away in the suburbs of Mountain View, building
-            a coding <em className="text-green-500 font-bold">superpower</em> @{" "}
-            <Link url="https://codeium.com" text="Codeium" /> and doing random
-            science experiments like <Bananas /> or <PeanutButter />.
-            {/* and very inconsistently emailing people about random life updates
+        <div className="flex justify-center mt-[230px]">
+          <div className="text-lg mx-10 w-[700px]">
+            <p>
+              hi! i'm mehul and i'm pretty{" "}
+              <HoverTip
+                text="excited"
+                hoverElem="← like geniunely i'm always kinda excited :')"
+              />
+            </p>
+            <br />
+            <p>
+              currently, i'm tucked away in the suburbs of Mountain View,
+              building a coding{" "}
+              <em className="text-green-500 font-bold">superpower</em> @{" "}
+              <Link url="https://codeium.com" text="Codeium" /> and doing random
+              science experiments like <Bananas /> or <PeanutButter />.
+              {/* and very inconsistently emailing people about random life updates
             and/or interesting science rabbit holes on{" "}
             <Link
               url="https://forms.gle/6ynpoLgRh9LZnGqT7"
               text="my newsletter"
             /> */}
-          </p>
-          <br />
-          <div>
-            sometimes i work on cool projects like:
-            <ProjectList projects={cool_projects} />
+            </p>
+            <br />
+            <div>
+              sometimes i work on cool projects like:
+              <ProjectList projects={cool_projects} />
+            </div>
+            <br />
+            <div>
+              but i also just meme around and do things like:
+              <ProjectList projects={fun_projects} />
+            </div>
+            <br />
+            <p>
+              i get a lot of joy from spreading excitement about computer
+              science: one of the most meaningful things i've done was lead the
+              machine learning education of{" "}
+              <Link url="https://launchpad.berkeley.edu/" text="Launchpad" />{" "}
+              for a year. i was also one of the first ciriculum developers for
+              competitive programming at{" "}
+              <Link url="https://junilearning.com/" text="Juni Learning" /> &
+              i've taught multiple camps at{" "}
+              <Link url="https://alphastar.academy/" text="AlphaStar Academy" />
+              .
+            </p>
+            <br />
+            <p>
+              in the past, i've done CI orchestration and low-latency
+              optimization for{" "}
+              <Link
+                text="Citadel Securities"
+                url="https://www.citadelsecurities.com/"
+              />{" "}
+              , built full-stack cluster management tools for{" "}
+              <Link text="Databricks" url="https://databricks.com/" />
+              , and developed the front-end for cloud visualization software at
+              <Link text="LucidScale" url="https://lucidscale.com/" />.
+            </p>
+            <br />
+            <p>
+              i've also volunteered at the
+              <Link
+                text="Sky Computing Lab"
+                url="https://sky.cs.berkeley.edu/"
+              />{" "}
+              where i worked on ML infra,
+              <Link text="Mesbah Lab" url="https://mesbahlab.com" /> where i
+              developed MPC control for plasma systems, and
+              <Link text="RAEL" url="https://rael.berkeley.edu/" /> where i
+              created energy consumption simulations for electric buses.
+            </p>
+
+            <br />
+
+            <div>
+              sometimes, i try to make things in real life: my favorite is
+              making <WoodenGifts /> for my friends, but i also enjoy making
+              t-shirts, mugs, or paper crafts.
+            </div>
+
+            <br />
+
+            <p>
+              please feel free to reach out! if you're in the area, i'm
+              moderately allergic to coffee, but let's grab some matcha or go on
+              a walk together {":')"}
+            </p>
+
+            <br />
+            <Footer />
           </div>
-          <br />
-          <div>
-            but i also just meme around and do things like:
-            <ProjectList projects={fun_projects} />
-          </div>
-          <br />
-          <p>
-            i get a lot of joy from spreading excitement about computer science:
-            one of the most meaningful things i've done was lead the machine
-            learning education of{" "}
-            <Link url="https://launchpad.berkeley.edu/" text="Launchpad" /> for
-            a year. i was also one of the first ciriculum developers for
-            competitive programming at{" "}
-            <Link url="https://junilearning.com/" text="Juni Learning" /> & i've
-            taught multiple camps at{" "}
-            <Link url="https://alphastar.academy/" text="AlphaStar Academy" />.
-          </p>
-          <br />
-          <p>
-            in the past, i've done CI orchestration and low-latency optimization
-            for{" "}
-            <Link
-              text="Citadel Securities"
-              url="https://www.citadelsecurities.com/"
-            />{" "}
-            , built full-stack cluster management tools for{" "}
-            <Link text="Databricks" url="https://databricks.com/" />
-            , and developed the front-end for cloud visualization software at
-            <Link text="LucidScale" url="https://lucidscale.com/" />.
-          </p>
-          <br />
-          <p>
-            i've also volunteered at the
-            <Link
-              text="Sky Computing Lab"
-              url="https://sky.cs.berkeley.edu/"
-            />{" "}
-            where i worked on ML infra,
-            <Link text="Mesbah Lab" url="https://mesbahlab.com" /> where i
-            developed MPC control for plasma systems, and
-            <Link text="RAEL" url="https://rael.berkeley.edu/" /> where i
-            created energy consumption simulations for electric buses.
-          </p>
-
-          <br />
-
-          <div>
-            sometimes, i try to make things in real life: my favorite is making{" "}
-            <WoodenGifts /> for my friends, but i also enjoy making t-shirts,
-            mugs, or paper crafts.
-          </div>
-
-          <br />
-
-          <p>
-            please feel free to reach out! if you're in the area, i'm moderately
-            allergic to coffee, but let's grab some matcha or go on a walk
-            together {":')"}
-          </p>
-
-          <br />
-          <Footer />
         </div>
       </div>
-    </div>
+    </html>
   );
 }
 
