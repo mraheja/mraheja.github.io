@@ -201,7 +201,7 @@ function Header() {
             <h1 className="text-2xl font-bold"> mehul raheja</h1>
           </div>
           <div className="flex justify-center">
-            <h1 className="text-l mt-1 font-light">
+            <h1 className="mt-1 font-light text-xs lg:text-lg">
               {" "}
               rahejamehul [at] gmail [dot] com
             </h1>
