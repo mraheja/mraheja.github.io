@@ -1,6 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Tooltip } from "react-tooltip";
 import mePicture from "./me.jpeg";
+import wood1 from "./wood1.jpg";
+import wood2 from "./wood2.jpg";
+import banana from "./banana.jpg";
+import peanut from "./peanut.jpg";
 import "./App.css";
 import { IoLogoGithub, IoLogoInstagram, IoLogoLinkedin } from "react-icons/io";
 
@@ -32,22 +36,70 @@ function HoverTip({ text, hoverElem: hoverText }) {
   );
 }
 
-function WoodenGifts() {
-  const [hover, setHover] = useState(false);
-  const onHover = () => {
-    setHover(!hover);
-  };
-
+function WoodenGiftImages() {
   return (
-    <span>
-        <nobr
-          className="bg-blue-200 hover:bg-blue-300 cursor-default"
-          onMouseOver={onHover}
-          onMouseOut={onHover}
-        >
-          wooden gifts
-        </nobr>
-    </span>
+    <div className="flex flex-col w-[300px]">
+      <img alt="wooden-gifts-1" className="py-2" src={wood1} />
+      <img alt="wooden-gifts-2" className="py-2" src={wood2} />
+    </div>
+  );
+}
+
+function WoodenGifts() {
+  return (
+    <>
+      <nobr
+        data-tooltip-id="my-tooltip"
+        className="bg-blue-200 hover:bg-blue-300 cursor-default"
+      >
+        wooden gifts
+      </nobr>
+      <Tooltip id="my-tooltip" render={() => <WoodenGiftImages />} />
+    </>
+  );
+}
+
+function BananaImage() {
+  return (
+    <div className="flex flex-col w-[300px]">
+      <img alt="banana-1" className="py-2" src={banana} />
+    </div>
+  );
+}
+
+function Bananas() {
+  return (
+    <>
+      <nobr
+        data-tooltip-id="banana-tooltip"
+        className="bg-blue-200 hover:bg-blue-300 cursor-default"
+      >
+        putting bananas in a dishwasher
+      </nobr>
+      <Tooltip id="banana-tooltip" render={() => <BananaImage />} />
+    </>
+  );
+}
+
+function PeanutButterImage() {
+  return (
+    <div className="flex flex-col w-[300px]">
+      <img alt="peanut-1" className="py-2" src={peanut} />
+    </div>
+  );
+}
+
+function PeanutButter() {
+  return (
+    <>
+      <nobr
+        data-tooltip-id="my-tooltip-3"
+        className="bg-blue-200 hover:bg-blue-300 cursor-default"
+      >
+        making peanut butter glow in the dark
+      </nobr>
+      <Tooltip id="my-tooltip-3" render={() => <PeanutButterImage />} />
+    </>
   );
 }
 
@@ -55,7 +107,7 @@ function ProjectList({ projects }) {
   return (
     <ul className="list-disc ml-10 mt-2">
       {projects.map((project) => (
-        <li>
+        <li key={project.url}>
           <Link url={project.url} text={project.name} />
         </li>
       ))}
@@ -103,7 +155,7 @@ function Header() {
 
   const [imageHeight, setImageHeight] = useState(fullImageHeight);
 
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     if (window.scrollY > topMargin + scrollRange) {
       setImageHeight(smallImageHeight);
     } else if (window.scrollY > topMargin) {
@@ -115,14 +167,14 @@ function Header() {
     } else {
       setImageHeight(fullImageHeight);
     }
-  };
+  }, [topMargin, scrollRange, fullImageHeight, smallImageHeight]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [handleScroll]);
 
   const smallImageDisplayed = imageHeight === smallImageHeight;
 
@@ -231,14 +283,14 @@ function App() {
           <p>
             currently, i'm tucked away in the suburbs of Mountain View, building
             a coding <em className="text-green-500 font-bold">superpower</em> @{" "}
-            <Link url="https://codeium.com" text="Codeium" /> and very
-            inconsistently emailing people about random life updates and/or
-            interesting science rabbit holes on{" "}
+            <Link url="https://codeium.com" text="Codeium" /> and doing random
+            science experiments like <Bananas /> or <PeanutButter />.
+            {/* and very inconsistently emailing people about random life updates
+            and/or interesting science rabbit holes on{" "}
             <Link
               url="https://forms.gle/6ynpoLgRh9LZnGqT7"
               text="my newsletter"
-            />
-            .
+            /> */}
           </p>
           <br />
           <div>
@@ -291,16 +343,17 @@ function App() {
 
           <br />
 
-          <p>
-            sometimes, i try my best to make some <WoodenGifts /> for my
-            friends.
-          </p>
+          <div>
+            sometimes, i try to make things in real life: my favorite is making{" "}
+            <WoodenGifts /> for my friends, but i also enjoy making t-shirts,
+            mugs, or paper crafts.
+          </div>
 
           <br />
 
           <p>
             please feel free to reach out! if you're in the area, i'm moderately
-            allergic to coffee, but we could grab some matcha or go a walk
+            allergic to coffee, but let's grab some matcha or go on a walk
             together {":')"}
           </p>
 
