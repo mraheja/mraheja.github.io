@@ -258,7 +258,7 @@ function App() {
     },
     {
       name: "Despasirito",
-      url: "https://github.com/mraheja/despasirito",
+      url: "https://devpost.com/software/despasirito",
     },
   ];
 
